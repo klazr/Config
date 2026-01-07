@@ -58,12 +58,12 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
 #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-inner.horizontal = 10
-inner.vertical =   10
-outer.left =       10
-outer.bottom =     10
-outer.top =        40
-outer.right =      10
+inner.horizontal = 0
+inner.vertical =   0
+outer.left =       0
+outer.bottom =     0
+outer.top =        0
+outer.right =      0
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -94,55 +94,38 @@ alt-slash = 'layout tiles horizontal vertical'
 alt-comma = 'layout accordion horizontal vertical'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
-#win-h = 'focus left'
-#win-t = 'focus down'
-#win-n = 'focus up'
-#win-s = 'focus right'
+cmd-alt-h = 'focus left'
+cmd-alt-j = 'focus down'
+cmd-alt-k = 'focus up'
+cmd-alt-l = 'focus right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
-#win-shift-h = 'move left'
-#win-shift-t = 'move down'
-#win-shift-n = 'move up'
-#win-shift-s = 'move right'
+cmd-shift-h = 'move left'
+cmd-shift-t = 'move down'
+cmd-shift-n = 'move up'
+cmd-shift-l = 'move right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
 alt-shift-minus = 'resize smart -50'
 alt-shift-equal = 'resize smart +50'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
-alt-i = 'workspace Home' # Home
-alt-e = 'workspace Browser' # Home
-alt-a = 'workspace Dev' # Browser
-alt-h = 'workspace Calendar' # Calendar
-alt-t = 'workspace Music' # Music
-alt-n = 'workspace Windows' # Windows
-alt-s = 'workspace Xting' # Extra
-
-cmd-alt-a = 'workspace Home' # Home
-cmd-alt-s = 'workspace Browser' # Home
-cmd-alt-d = 'workspace Dev' # Browser
-cmd-alt-c = 'workspace Calendar' # Calendar
-cmd-alt-m = 'workspace Music' # Music
-cmd-alt-w = 'workspace Windows' # Windows
-cmd-alt-x = 'workspace Xting' # Extra
+alt-a = 'workspace Home' # Home
+alt-shift-a = 'move-node-to-workspace Home'
+alt-s = 'workspace Second' # Second
+alt-shift-s = 'move-node-to-workspace Second'
+alt-d = 'workspace Dev' # Dev
+alt-shift-d = 'move-node-to-workspace Dev'
+alt-m = 'workspace Message'
+alt-shift-m = 'move-node-to-workspace Message'
+alt-c = 'workspace Calendar'
+alt-shift-c = 'move-node-to-workspace Calendar'
+alt-f = 'workspace Finder'
+alt-shift-f = 'move-node-to-workspace Finder'
+alt-z = 'workspace Zextra'
+alt-shift-z = 'move-node-to-workspace Zextra'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
-alt-shift-i = 'move-node-to-workspace Home'
-alt-shift-e = 'move-node-to-workspace Browser'
-alt-shift-a = 'move-node-to-workspace Dev'
-alt-shift-h = 'move-node-to-workspace Calendar'
-alt-shift-t = 'move-node-to-workspace Music'
-alt-shift-n = 'move-node-to-workspace Windows'
-alt-shift-s = 'move-node-to-workspace Xting'
-
-cmd-alt-shift-a = 'move-node-to-workspace Home'
-cmd-alt-shift-s = 'move-node-to-workspace Browser'
-cmd-alt-shift-d = 'move-node-to-workspace Dev'
-cmd-alt-shift-c = 'move-node-to-workspace Calendar'
-cmd-alt-shift-m = 'move-node-to-workspace Music'
-cmd-alt-shift-w = 'move-node-to-workspace Windows'
-cmd-alt-shift-x = 'move-node-to-workspace Xting'
-
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt-tab = 'workspace-back-and-forth'
@@ -166,21 +149,30 @@ run = 'layout tiling'
 
 # Set Home
 [[on-window-detected]]
-if.app-id = 'md.obsidian'
-run = 'move-node-to-workspace Home'
-[[on-window-detected]]
 if.app-id = 'com.philipyoungg.session'
 run = 'move-node-to-workspace Home'
-
-# Set Browser
 [[on-window-detected]]
-if.app-id = 'app.zen-browser.zen'
-run = 'move-node-to-workspace Browser'
+if.app-id = 'com.todoist.mac.Todoist'
+run = 'move-node-to-workspace Home'
+[[on-window-detected]]
+if.app-id = 'com.linear'
+run = 'move-node-to-workspace Home'
+
+# Set Second
+[[on-window-detected]]
+if.app-id = 'com.anthropic.claudefordesktop'
+run = 'move-node-to-workspace Second'
 
 # Set Dev
 [[on-window-detected]]
-if.app-id = 'org.alacritty'
+if.app-id = 'com.google.Chrome'
 run = 'move-node-to-workspace Dev'
+[[on-window-detected]]
+if.app-id = 'com.todesktop.230313mzl4w4u92' # Cursor
+run = 'move-node-to-workspace Dev'
+[[on-window-detected]]
+if.app-id = 'com.apple.Terminal'
+run = 'move-node-to-workspace Second'
 
 #  Set Calendar
 [[on-window-detected]]
@@ -190,23 +182,20 @@ run = 'move-node-to-workspace Calendar'
 if.app-id = 'com.apple.weather'
 run = 'move-node-to-workspace Calendar'
 
-# Set Parallels
-[[on-window-detected]]
-if.app-id = 'com.parallels.desktop.console'
-run = 'move-node-to-workspace Windows'
-
-# Set Music
+# Set Zextra (music)
 [[on-window-detected]]
 if.app-id = 'com.spotify.client'
-run = 'move-node-to-workspace Music'
-[[on-window-detected]]
-if.app-id = 'com.apple.Music'
-run = 'move-node-to-workspace Music'
+run = 'move-node-to-workspace Zextra'
 
-# Set Texting
-[[on-window-detected]]
-if.app-id = 'com.tunabelly.androidsms'
-run = 'move-node-to-workspace Xting'
+# Set Messaging
 [[on-window-detected]]
 if.app-id = 'com.apple.MobileSMS'
-run = 'move-node-to-workspace Xting'
+run = 'move-node-to-workspace Message'
+[[on-window-detected]]
+if.app-id = 'com.hnc.Discord'
+run = 'move-node-to-workspace Message'
+
+# Set Finder
+[[on-window-detected]]
+if.app-id = 'com.apple.finder'
+run = 'move-node-to-workspace Finder'
